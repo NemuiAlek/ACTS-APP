@@ -1,0 +1,205 @@
+#createCombat{
+    display: flex;
+    flex-direction: column;
+    justify-content: top;
+    align-items: center;
+    height: auto;
+}
+
+#createCombat #combatInfo{
+width: 50%;
+height: 100%;
+padding: 0 30px 30px 0px;
+background-image: url('../../public/statblockparch.jpg');
+}
+
+#createCombat .inputGrouping{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+#createCombat .inputGrouping.top{
+margin-top: 20px;
+padding-left: 30px;
+min-height: 150px ;
+}
+
+.inputGrouping .inputField.small{
+  width: 10%;
+  min-height: 120px;
+  height: auto
+  }
+
+  .inputGrouping .inputField.xmedium{
+    width: 25%;
+    min-height: 120px;
+    height: auto
+    }
+
+.inputGrouping .inputField.medium{
+    width: 35%;
+    min-height: 120px;
+    height: auto
+    }
+
+.inputGrouping .inputField.large{
+    width: 50%;
+    min-height: 120px;
+    height: auto
+    }
+
+.inputGrouping .inputField textarea.medium{
+    font-size: 15px;
+    width: 100%;
+    height: 60px;
+    text-align: left; 
+  }
+
+.inputGrouping .inputField textarea.large{
+    font-size: 15px;
+    width: 100%;
+    height: 90px;
+    text-align: left; 
+  }
+
+#createCombat .inputGrouping .inputField label{
+    font-size: 17px;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+
+  #createCombat #combatInfo #topInfo{
+    display: flex;
+    flex-grow: row;
+    margin-top: 0px;
+    padding-bottom: 15px;
+    height: 3vw;
+    }
+
+    #createCombat #combatInfo #topInfo h5{
+      display: flex;
+      justify-content: left;
+      font-weight: bold;
+      font-size: 17px;
+      width: 90%;
+    }
+
+    #createCombat #combatInfo #topInfo label{
+      display: flex;
+      align-items: center;
+      justify-content: right;
+      font-weight: bold;
+      font-size: 20px;
+      width: 90%;
+      line-height: 30px;
+    }
+
+    #createCombat #combatInfo #topInfo button{
+      display: flex;
+      justify-content: center;
+      font-weight: bold;
+      width:8%;
+    }
+
+#createCombat #savedCombats{
+  width:50%
+}
+
+.combatListHead{
+  /* background: #ffd48a; */
+  background:#0d0f7a;
+  color: white;
+}
+
+#createCombat #savedCombats tbody td.small{
+  width: 12%;
+}
+
+#createCombat #savedCombats tbody td.large{
+  width: 40%;
+}
+
+#createCombat #savedCombats tbody{
+  cursor: pointer;
+}
+
+
+#createDetail{
+    display: flex;
+    flex-direction: column;
+    justify-content: top;
+    align-items: center;
+    height: auto;
+}
+
+#createCombat .inputGrouping{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+#createDetail #combatInfo{
+width: 50%;
+height: 100%;
+padding: 0 30px 30px 0px;
+background-image: url('../../public/statblockparch.jpg');
+}
+
+#createDetail .inputGrouping{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+#createDetail .inputGrouping .inputField{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#createDetail .inputGrouping .inputField input{
+text-align: center;
+height: 35px;
+font-size: 17px;
+}
+
+#createDetail .inputGrouping .inputField select{
+  height: 35px;
+  font-size: 17px;
+  }
+
+#createDetail .inputGrouping .inputField label{
+  font-size: 17px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+#createDetail .inputGrouping .inputField .searchFilter{
+  width: 100%;
+}
+
+
+#createDetail .inputGrouping .inputField .searchFilter input{
+  height: 25px;
+}
+
+.monsterCard{
+  background-image: url('../../public/statblockparch.jpg');
+}
+#createDetail #monsterSheet .stat-block.wide{
+  width: 100%;
+}
+.monsterCard p.rowNum{
+  display: flex;
+  justify-content: left;
+  align-items: left;
+}
+ .monsterCard input{
+  width:20%
+ }
+

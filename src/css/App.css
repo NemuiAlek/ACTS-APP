@@ -1,0 +1,149 @@
+html{
+  background-image: url('../../public/background.jpeg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  /* height: 100vh; */
+  height: 100%;
+  width: 100%;
+
+}
+
+#mainMenu{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+background-image: url('../../public/statblockparch.jpg');
+border-radius: 25px;
+opacity: 80%;
+padding:50px;
+}
+
+#mainMenu h1{
+  opacity: 100%;
+  font-weight: bold;
+  font-size: 50px;
+}
+
+#mainMenu p{
+  opacity: 100%;
+  font-size: 20px;
+}
+
+.Nav{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: top;
+  text-align: center;
+  padding: 10px;
+  /* background-color: gray; */
+  /* z-index: 1; */
+}
+
+h1{
+}
+
+.navItem{
+  margin: 0 1vw 0 1vw
+}
+
+.profileImage{
+  width: 5vw;
+  height: auto;
+  border-radius: 10px;
+}
+
+.profileEditOptions{
+  margin: 10px;
+}
+
+#profilePage{
+  display: flex;
+  justify-content: center;
+  width: 100%
+}
+
+.homePage.profilePage{
+  background-image: url('../../public/statblockparch.jpg');
+}
+
+.homePage.profilePage label{
+  font-weight: bold;
+  font-size: 20px;
+  margin: 7px;
+}
+
+.homePage.profilePage h4{
+  font-weight: bold;
+  font-size: 25px;
+  margin: 5px 5px 25px 5px;
+}
+
+.profileForm{
+  display: flex;
+  flex-flow: column;
+  width: 15vw;
+  min-height: 15vw;
+}
+
+.profileForm input{
+  text-align: center;
+}
+
+.profilePage .editMode{
+  display: flex;
+  flex-flow: column;
+  width:15vw;
+}
+
+.username form{
+  display:flex;
+  flex-flow: column;
+  width:15vw;
+}
+
+.username input{
+  text-align:center
+}
+
+.homePage{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 6vw 50px 50px 50px;
+  /* background-color: gray; */
+  /* z-index: 1; */
+}
+
+.homePage .links{
+  display:flex;
+  flex-flow: row;
+}
+.homePage .links p{
+  margin: 10px;
+  text-decoration: none;
+}
+
+.homePage .links p{
+  margin: 10px;
+  text-decoration: none;
+}
+
+.homePage .user{
+  display:flex;
+  flex-flow: row;
+  margin:10px
+}
+
+.homePage .user p{
+  margin: 10px;
+}
+
+.homePage h1{
+  display:flex;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
