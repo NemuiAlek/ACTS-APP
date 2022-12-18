@@ -77,7 +77,7 @@ const submitSignupForm = (event) => {
 
     axios
     .post(
-        "http://localhost:4000/user/validate",
+        "http://192.168.86.131:4000/user/validate",
         {
             userName: formState.username,
             email: formState.email,
@@ -136,7 +136,7 @@ useEffect(()=>{
     if(errorMessage.validUsername === true && errorMessage.validEmail === true && errorMessage.validPass === true && errorMessage.validConfirm === true){
         axios
             .post(
-                "http://localhost:4000/user/signup",
+                "http://192.168.86.131:4000/user/signup",
                 {
                     userName: formState.username,
                     email: formState.email,

@@ -34,7 +34,7 @@ const getMonstersStandard = () =>{
 
 const getMonstersCustom = () =>{
     axios
-    .get("http://localhost:4000/monster/", {
+    .get("http://192.168.86.131:4000/monster/", {
     })
     .then((response) => {
         setMonsters(response.data);

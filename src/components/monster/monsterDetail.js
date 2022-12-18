@@ -80,7 +80,7 @@ const getMonsterStandard = () =>{
 
 const getMonsterCustom = () =>{
     axios
-    .get("http://localhost:4000/monster/" + params.id, {
+    .get("http://192.168.86.131:4000/monster/" + params.id, {
     })
     .then((response) => {
         setMonster(response.data);

@@ -95,7 +95,7 @@ const enterPass = (e, thingToUpdate) => {
 
 const getMonster = () =>{
     axios
-    .get("http://localhost:4000/monster/" + params.id, {
+    .get("http://192.168.86.131:4000/monster/" + params.id, {
     })
     .then((response) => {
         setMonster(response.data);
@@ -123,7 +123,7 @@ const submitBtn = (event) => {
     console.log(monster, params.id)
     ///*
     axios
-    .post("http://localhost:4000/monster/create-update/" + params.id, 
+    .post("http://192.168.86.131:4000/monster/create-update/" + params.id, 
     {
         userID: theUser.id,
         data: monster
@@ -149,7 +149,7 @@ const deleteMonster = () =>{
     console.log(theUser.id)
 
     axios
-    .post("http://localhost:4000/monster/delete/" + params.id, {
+    .post("http://192.168.86.131:4000/monster/delete/" + params.id, {
         id:theUser.id,
         password:deleteMode.password
     })
@@ -183,7 +183,7 @@ const upadateArray = (array, id, name, modifier) => {
 const submitArray = (event, array) => {
     event.preventDefault();
     axios
-    .post("http://localhost:4000/monster/create-update-array/" + arrayID[array].toString(), 
+    .post("http://192.168.86.131:4000/monster/create-update-array/" + arrayID[array].toString(), 
     {
         monsterID:params.id,
         arrayName: array,
@@ -205,7 +205,7 @@ const submitArray = (event, array) => {
 const deleteArray = (event, array) => {
     event.preventDefault();
     axios
-    .post("http://localhost:4000/monster/delete-array/" + arrayID[array].toString(), 
+    .post("http://192.168.86.131:4000/monster/delete-array/" + arrayID[array].toString(), 
     {
         monsterID:params.id,
         arrayName: array
