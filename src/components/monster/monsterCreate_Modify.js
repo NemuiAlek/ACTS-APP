@@ -1,5 +1,5 @@
 import { useEffect, useState, useContext } from "react";
-import {Link, useNavigate, useParams} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 import axios from "axios"
 import UserContext from "../../contexts/UserContext"
 import Button from 'react-bootstrap/Button';
@@ -8,7 +8,7 @@ import Table from 'react-bootstrap/Table';
 
 export default function MonsterStandard(){
 
-    const { theUser, getUserInfo } = useContext(UserContext);  
+    const { theUser } = useContext(UserContext);  
     const navigate = useNavigate();
     const params = useParams()
 /*

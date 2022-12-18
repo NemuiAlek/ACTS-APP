@@ -1,5 +1,5 @@
 import { useEffect, useState, useContext } from "react";
-import {Link, useNavigate} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import UserContext from "../../contexts/UserContext";
 import axios from "axios";
 
@@ -75,7 +75,7 @@ export default function Profile(){
     const validateConfirm = () =>{
         if(userInfo.newPass === '' && userInfo.confirmPass === ''){
             validate((x) => ({...x, validConfirm: true}))
-        }else if(userInfo.newPass === '' && userInfo.confirmPass !== '' || userInfo.newPass !== '' && userInfo.confirmPass === '' ){
+        }else if((userInfo.newPass === '' && userInfo.confirmPass !== '') || (userInfo.newPass !== '' && userInfo.confirmPass === '' )){
             validate((x) => ({...x, validConfirm: false}))
         }else if(userInfo.confirmPass !== userInfo.newPass){
             validate((x) => ({...x, validConfirm: 'Passwords dont match!'}))

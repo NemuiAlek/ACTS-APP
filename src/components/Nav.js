@@ -1,5 +1,5 @@
-import { useEffect, useState, useContext } from "react";
-import {Link, useLocation} from "react-router-dom";
+import {useContext } from "react";
+import {Link} from "react-router-dom";
 import UserContext from "../contexts/UserContext";
 
 import Container from 'react-bootstrap/Container';
@@ -9,7 +9,6 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 
 export default function Navz(){
     const { theUser, logout } = useContext(UserContext);
-    const location = useLocation();
 
     // if(location.pathname === '/'){
     //     return null

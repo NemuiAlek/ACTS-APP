@@ -1,5 +1,5 @@
 import { useEffect, useState, useContext } from "react";
-import {Link, useNavigate, useParams} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import Button from 'react-bootstrap/Button';
 import UserContext from "../../contexts/UserContext"
 import axios from "axios"
@@ -7,7 +7,7 @@ import Table from 'react-bootstrap/Table';
 
 export default function CombatTracker(){
 
-const { theUser, getUserInfo } = useContext(UserContext);  
+const { theUser} = useContext(UserContext);  
 const navigate = useNavigate();
 
 /*

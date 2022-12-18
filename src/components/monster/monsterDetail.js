@@ -1,12 +1,12 @@
 import { useEffect, useState, useContext } from "react";
-import {Link, useNavigate, useParams} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 import axios from "axios"
 import UserContext from "../../contexts/UserContext"
 
 
 export default function MonsterStandard(){
 
-    const { theUser, getUserInfo } = useContext(UserContext);  
+    const { theUser } = useContext(UserContext);  
     const navigate = useNavigate();
     const params = useParams()
 /*

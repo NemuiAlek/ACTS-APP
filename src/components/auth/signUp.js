@@ -1,13 +1,6 @@
-import { useEffect, useState, useContext } from "react";
-import {Link, useNavigate} from "react-router-dom";
+import { useEffect, useState} from "react";
+import {useNavigate} from "react-router-dom";
 import axios from "axios";
-import Captcha from '../../API/captcha';
-
-const linkStyle = {
-    textDecoration: "none",
-    color: 'black',
-    'fontWeight': 'bold',
-};
 
 export default function SignUp(){
 
@@ -28,13 +21,6 @@ export default function SignUp(){
         validPass:false,
         validConfirm: false,
     })
-
-/*
-const captchaCall = x =>{
-    Captcha('https://www.google.com/recaptcha/api.js');
-}
-*/
-
 /*
 ======================== FUNCTIONS ======================
 */

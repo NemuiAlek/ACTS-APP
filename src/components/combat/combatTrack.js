@@ -1,5 +1,5 @@
 import { useEffect, useState, useContext } from "react";
-import {Link, useNavigate, useParams} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 import Button from 'react-bootstrap/Button';
 import UserContext from "../../contexts/UserContext"
 import axios from "axios"
@@ -9,7 +9,7 @@ import React from 'react'
 
 export default function CombatTracker(){
 
-const { theUser, getUserInfo } = useContext(UserContext);  
+const { theUser} = useContext(UserContext);  
 const navigate = useNavigate();
 const params = useParams();
 const myRef = React.useRef(null)
