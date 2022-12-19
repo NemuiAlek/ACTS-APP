@@ -63,7 +63,7 @@ const submitSignupForm = (event) => {
 
     axios
     .post(
-        "http://192.168.86.131:4000/user/validate",
+        "http://https://acts-api-production.up.railway.app/user/validate",
         {
             userName: formState.username,
             email: formState.email,
@@ -122,7 +122,7 @@ useEffect(()=>{
     if(errorMessage.validUsername === true && errorMessage.validEmail === true && errorMessage.validPass === true && errorMessage.validConfirm === true){
         axios
             .post(
-                "http://192.168.86.131:4000/user/signup",
+                "http://https://acts-api-production.up.railway.app/user/signup",
                 {
                     userName: formState.username,
                     email: formState.email,

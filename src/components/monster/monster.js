@@ -34,7 +34,7 @@ const getMonstersStandard = () =>{
 
 const getMonstersCustom = () =>{
     axios
-    .get("http://192.168.86.131:4000/monster/", {
+    .get("http://https://acts-api-production.up.railway.app/monster/", {
     })
     .then((response) => {
         setMonsters(response.data);
