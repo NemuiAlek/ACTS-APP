@@ -39,7 +39,7 @@ const LoginSubmit = (event) => {
         {
             userName: formState.username,
             password: formState.password,
-        },{withCredentials: true}
+        },{withCredentials: false}
     ).then((msg) =>{
         console.log(msg)
         if(msg.data === "Successfully logged in") {

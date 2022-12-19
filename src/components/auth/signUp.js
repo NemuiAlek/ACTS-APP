@@ -67,7 +67,7 @@ const submitSignupForm = (event) => {
         {
             userName: formState.username,
             email: formState.email,
-        },{withCredentials: true}
+        },{withCredentials: false}
     )
     .then((msg) => {
     
@@ -130,7 +130,7 @@ useEffect(()=>{
                     confirmPassword: formState.confirmPassword,
                     role: 'admin'
                 },
-                { withCredentials: true }
+                { withCredentials: false }
             )
             .then((response) => {
                 console.log(response)//getUserInfo();

@@ -137,7 +137,7 @@ export default function Profile(){
                     {
                         currentPass: userInfo.currentPass,
                     },
-                    { withCredentials: true }
+                    { withCredentials: false }
                 )
                 .then((result) => {
                     navigate('/');
@@ -196,7 +196,7 @@ export default function Profile(){
                         newPass: userInfo.newPass,
                         confirmPass: userInfo.confirmPass,
                     },
-                    { withCredentials: true }
+                    { withCredentials: false }
                 )
                 .then(() => {
                     window.location.reload();
