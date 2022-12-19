@@ -35,7 +35,7 @@ const LoginSubmit = (event) => {
 
     axios
     .post(
-        "http://https://acts-api-production.up.railway.app/user/login",
+        "https://acts-api-production.up.railway.app/user/login",
         {
             userName: formState.username,
             password: formState.password,

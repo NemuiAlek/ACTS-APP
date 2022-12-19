@@ -50,7 +50,7 @@ const createBtn = (event, action) => {
     console.log(combat)
 
     axios
-    .post("http://https://acts-api-production.up.railway.app/combat/create-update/"+action,
+    .post("https://acts-api-production.up.railway.app/combat/create-update/"+action,
     {
         userID: theUser.id ? theUser.id : 'Guest',
         data: combat
@@ -70,7 +70,7 @@ const createBtn = (event, action) => {
 
 const getSavedCombats = () =>{
     axios
-    .get("http://https://acts-api-production.up.railway.app/combat/"+(theUser.id ? theUser.id : 'Guest'), {
+    .get("https://acts-api-production.up.railway.app/combat/"+(theUser.id ? theUser.id : 'Guest'), {
     })
     .then((response) => {
         setSaved(response.data);

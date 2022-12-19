@@ -125,7 +125,7 @@ const getMonstersStandard = () =>{
 const getMonstersCustom = () =>{
     if (dictionary !== 'custom') return
     axios
-    .get("http://https://acts-api-production.up.railway.app/monster/", {
+    .get("https://acts-api-production.up.railway.app/monster/", {
     })
     .then((response) => {
         setMonsters(response.data);
@@ -176,7 +176,7 @@ const addMonster = (event,action) => {
     // fix this later plz
 
     axios
-    .post("http://https://acts-api-production.up.railway.app/combat/detail/add/"+params.id,
+    .post("https://acts-api-production.up.railway.app/combat/detail/add/"+params.id,
     {
         action:action,
         monsterID:combatDetail.monsterid,
@@ -221,7 +221,7 @@ const getMonDetStan = () =>{
 
 const getMonDetCus = () =>{
     axios
-    .get("http://https://acts-api-production.up.railway.app/monster/"+combatDetail.monsterid, {
+    .get("https://acts-api-production.up.railway.app/monster/"+combatDetail.monsterid, {
     })
     .then((response) => {
         setMonster(response.data);
@@ -233,7 +233,7 @@ const getMonDetCus = () =>{
 
 const getCombatData = () =>{
     axios
-    .get("http://https://acts-api-production.up.railway.app/combat/detail/" + params.id, {
+    .get("https://acts-api-production.up.railway.app/combat/detail/" + params.id, {
     })
     .then((response) => {
         setCombatMonsters(() => response.data)
@@ -248,7 +248,7 @@ const healthChanges = (event,id,healthMod,action) =>{
     event.preventDefault()
     
     axios
-    .post("http://https://acts-api-production.up.railway.app/combat/detail/health", {
+    .post("https://acts-api-production.up.railway.app/combat/detail/health", {
             id: id,
             modifier: healthMod,
             action: action
@@ -268,7 +268,7 @@ const deleteDetail = (event,id) =>{
     event.preventDefault()
     
     axios
-    .post("http://https://acts-api-production.up.railway.app/combat/detail/delete/"+id, {
+    .post("https://acts-api-production.up.railway.app/combat/detail/delete/"+id, {
     })
     .then((response) => {
         getCombatData();
@@ -284,7 +284,7 @@ const deleteCombat = (event,id) =>{
     event.preventDefault()
     
     axios
-    .post("http://https://acts-api-production.up.railway.app/combat/delete/"+id, {
+    .post("https://acts-api-production.up.railway.app/combat/delete/"+id, {
         user:theUser.id
     })
     .then((response) => {
