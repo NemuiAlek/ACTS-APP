@@ -133,7 +133,7 @@ export default function Profile(){
         } else if (editMode === true && deleteMode === true){
             axios
                 .post(
-                    "http://localhost:4000/user/delete/"+theUser.id,
+                    "https://acts-api-production.up.railway.app/user/delete/"+theUser.id,
                     {
                         currentPass: userInfo.currentPass,
                     },
@@ -188,7 +188,7 @@ export default function Profile(){
              errorMessage.validCurrentPass === true && errorMessage.validNewPass === true && errorMessage.validConfirm === true && editMode === true){
             axios
                 .put(
-                    "http://localhost:4000/user/update/"+theUser.id,
+                    "https://acts-api-production.up.railway.app/user/update/"+theUser.id,
                     {
                         userName: userInfo.username,
                         email: userInfo.email,
