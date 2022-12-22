@@ -17,7 +17,7 @@ export default function Profile(){
         currentPass:'',
         newPass:'',
         confirmPass:'',
-        wait: false
+        // wait: false
     });
 
     const [errorMessage, validate] = useState({
@@ -35,11 +35,11 @@ export default function Profile(){
 ======================== FUNCTIONS ======================
 */
 
-    const waitToLoad = () =>{
-        setTimeout(() => {
-            setUser((x) => ({...x, wait:true}))
-        }, 1500);
-    }
+    // const waitToLoad = () =>{
+    //     setTimeout(() => {
+    //         setUser((x) => ({...x, wait:true}))
+    //     }, 1500);
+    // }
 
     const updateInput = (e, thingToUpdate) => {
         setUser({ ...userInfo, [thingToUpdate]: e.target.value });
@@ -133,11 +133,11 @@ export default function Profile(){
         } else if (editMode === true && deleteMode === true){
             axios
                 .post(
-                    "https://acts-api-production.up.railway.app/user/delete/"+theUser.id,
+                    "http://localhost:4000/user/delete/"+theUser.id,
                     {
                         currentPass: userInfo.currentPass,
                     },
-                    { withCredentials: false }
+                    { withCredentials: true }
                 )
                 .then((result) => {
                     navigate('/');
@@ -164,8 +164,8 @@ export default function Profile(){
 ======================== USE EFFECTS ======================
 */
     useEffect(() => {
-        
-        waitToLoad()
+        getUserInfo()
+        // waitToLoad()
 
         if(theUser === null){
             return
@@ -174,7 +174,7 @@ export default function Profile(){
             setUser((x) => ({...x, email:theUser.email}))
         }
 
-    }, [userInfo.wait])
+    }, [])
     
     useEffect(()=>{    
 
@@ -188,7 +188,7 @@ export default function Profile(){
              errorMessage.validCurrentPass === true && errorMessage.validNewPass === true && errorMessage.validConfirm === true && editMode === true){
             axios
                 .put(
-                    "https://acts-api-production.up.railway.app/user/update/"+theUser.id,
+                    "http://localhost:4000/user/update/"+theUser.id,
                     {
                         userName: userInfo.username,
                         email: userInfo.email,
@@ -196,7 +196,7 @@ export default function Profile(){
                         newPass: userInfo.newPass,
                         confirmPass: userInfo.confirmPass,
                     },
-                    { withCredentials: false }
+                    { withCredentials: true }
                 )
                 .then(() => {
                     window.location.reload();

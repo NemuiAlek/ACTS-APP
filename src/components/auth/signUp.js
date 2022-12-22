@@ -1,6 +1,7 @@
 import { useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
 import axios from "axios";
+axios.defaults.withCredentials = true;
 
 export default function SignUp(){
 
@@ -63,11 +64,11 @@ const submitSignupForm = (event) => {
 
     axios
     .post(
-        "https://acts-api-production.up.railway.app/user/validate",
+        "http://localhost:4000/user/validate",
         {
             userName: formState.username,
             email: formState.email,
-        },{withCredentials: false}
+        },{withCredentials: true}
     )
     .then((msg) => {
     
@@ -122,7 +123,7 @@ useEffect(()=>{
     if(errorMessage.validUsername === true && errorMessage.validEmail === true && errorMessage.validPass === true && errorMessage.validConfirm === true){
         axios
             .post(
-                "https://acts-api-production.up.railway.app/user/signup",
+                "http://localhost:4000/user/signup",
                 {
                     userName: formState.username,
                     email: formState.email,
@@ -130,7 +131,7 @@ useEffect(()=>{
                     confirmPassword: formState.confirmPassword,
                     role: 'admin'
                 },
-                { withCredentials: false }
+                { withCredentials: true }
             )
             .then((response) => {
                 console.log(response)//getUserInfo();

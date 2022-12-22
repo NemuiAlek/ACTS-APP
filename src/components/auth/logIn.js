@@ -1,12 +1,7 @@
 import { useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
 import axios from "axios";
-
-const linkStyle = {
-    textDecoration: "none",
-    color: 'black',
-    'fontWeight': 'bold',
-}
+axios.defaults.withCredentials = true;
 
 export default function LogIn(){
     const navigate = useNavigate();
@@ -35,16 +30,16 @@ const LoginSubmit = (event) => {
 
     axios
     .post(
-        "https://acts-api-production.up.railway.app/user/login",
+        "http://localhost:4000/user/login",
         {
             userName: formState.username,
             password: formState.password,
-        },{withCredentials: false}
+        },{withCredentials: true}
     ).then((msg) =>{
         console.log(msg)
         if(msg.data === "Successfully logged in") {
             navigate("/");
-            window.location.reload();
+            //window.location.reload();
         } else {
             setMessage(msg.data)
         }

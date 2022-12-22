@@ -147,3 +147,19 @@ h1{
   align-items: center;
   justify-content: center;
 }
+
+#aboutPage{
+display: flex;
+flex-flow: column;
+justify-content: center;
+align-items: center;
+}
+
+#aboutPage .content{
+  background-image: url('../../public/statblockparch.jpg');
+  width: 30%;
+}
+
+#aboutPage a{
+  color: black;
+}

@@ -7,7 +7,7 @@ import Table from 'react-bootstrap/Table';
 
 export default function CombatTracker(){
 
-const { theUser} = useContext(UserContext);  
+const { theUser, getUserInfo} = useContext(UserContext);  
 const navigate = useNavigate();
 
 /*
@@ -31,11 +31,11 @@ const [savedCombats, setSaved] = useState([{
 }])
 
 const [updateMode, setUpdateMode] = useState(false)
-const [waitToLoad, activateLoad] = useState(false)
+// const [waitToLoad, activateLoad] = useState(false)
 
-setTimeout(() => {
-    activateLoad(true)
-}, 1000);
+// setTimeout(() => {
+//     activateLoad(true)
+// }, 1000);
 
 /*
 ======================== FUNCTIONS ======================
@@ -50,7 +50,7 @@ const createBtn = (event, action) => {
     console.log(combat)
 
     axios
-    .post("https://acts-api-production.up.railway.app/combat/create-update/"+action,
+    .post("http://localhost:4000/combat/create-update/"+action,
     {
         userID: theUser.id ? theUser.id : 'Guest',
         data: combat
@@ -70,7 +70,7 @@ const createBtn = (event, action) => {
 
 const getSavedCombats = () =>{
     axios
-    .get("https://acts-api-production.up.railway.app/combat/"+(theUser.id ? theUser.id : 'Guest'), {
+    .get("http://localhost:4000/combat/"+(theUser.id ? theUser.id : 'Guest'), {
     })
     .then((response) => {
         setSaved(response.data);
@@ -97,8 +97,9 @@ const updateField = (id, name, desc) =>{
 */
 
 useEffect(() => {
-    getSavedCombats()
-}, [waitToLoad])
+    getUserInfo();
+    getSavedCombats();
+}, [])
 
 /*
 ======================== HTML(JSX) ======================

@@ -7,6 +7,7 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 
+
 export default function Navz(){
     const { theUser, logout } = useContext(UserContext);
 
@@ -31,14 +32,14 @@ export default function Navz(){
                   <NavDropdown.Item as={Link} to={"/monster/standard"}>Standard</NavDropdown.Item>
                   <NavDropdown.Item as={Link} to={"/monster/custom"}>Custom</NavDropdown.Item>
 
-                  {theUser && (
+                  {theUser.userName && (
                     <div>
                     <NavDropdown.Divider />
                     <NavDropdown.Item as={Link} to={"/monster/create-modify/new"}>Create</NavDropdown.Item>
                   </div>
                   )}
 
-                  {!theUser && (
+                  {!theUser.userName && (
                     <div>
                     <NavDropdown.Divider />
                     <NavDropdown.Item as={Link} to={"/login"}>Create</NavDropdown.Item>
@@ -51,7 +52,7 @@ export default function Navz(){
                       <Nav.Link as={Link} to={"/combat"}>Combat</Nav.Link>
                 </Nav.Item>
 
-                {!theUser &&(
+                {!theUser.userName &&(
                   <div>
                     <Nav.Item className="navItem">
                       <Nav.Link as={Link} to={"/login"}>Log In</Nav.Link>
@@ -59,7 +60,7 @@ export default function Navz(){
                 </div>
                 )}
 
-                {!theUser && (
+                {!theUser.userName && (
                   <div>
                     <Nav.Item className="navItem">
                       <Nav.Link as={Link} to={"/signup"}>Sign Up</Nav.Link>
@@ -67,7 +68,7 @@ export default function Navz(){
                   </div>
                 )}
 
-                {theUser &&(
+                {theUser.userName &&(
                 <NavDropdown
                   id="combatDropdown"
                   title={theUser.userName}
@@ -79,6 +80,8 @@ export default function Navz(){
 
                 </NavDropdown>
                 )}
+
+                <Nav.Link as={Link} to={"/about"}>About</Nav.Link>
 
               </Nav>
             </Navbar.Collapse>

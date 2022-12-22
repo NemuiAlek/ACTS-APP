@@ -6,7 +6,7 @@ import UserContext from "../../contexts/UserContext"
 
 export default function MonsterStandard(){
 
-    const { theUser } = useContext(UserContext);  
+    const { theUser, getUserInfo } = useContext(UserContext);  
     const navigate = useNavigate();
     const params = useParams()
 /*
@@ -67,6 +67,7 @@ const [loading, setLoading] = useState(false)
 const getMonsterStandard = () =>{
     axios
     .get("https://api.open5e.com/monsters/" + params.id, {
+        withCredentials: false
     })
     .then((response) => {
         setMonster(() => response.data);
@@ -80,7 +81,7 @@ const getMonsterStandard = () =>{
 
 const getMonsterCustom = () =>{
     axios
-    .get("https://acts-api-production.up.railway.app/monster/" + params.id, {
+    .get("http://localhost:4000/monster/" + params.id, {
     })
     .then((response) => {
         setMonster(response.data);
@@ -106,6 +107,7 @@ const updateBtn = (event) =>{
 */
 
 useEffect(() => {
+    getUserInfo()
     isNaN(params.id) ? getMonsterStandard() : getMonsterCustom();
 }, [])
 
