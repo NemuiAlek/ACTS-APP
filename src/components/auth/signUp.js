@@ -64,7 +64,7 @@ const submitSignupForm = (event) => {
 
     axios
     .post(
-        "http://localhost:4000/user/validate",
+        "https://acts-api-production.up.railway.app/user/validate",
         {
             userName: formState.username,
             email: formState.email,
@@ -123,7 +123,7 @@ useEffect(()=>{
     if(errorMessage.validUsername === true && errorMessage.validEmail === true && errorMessage.validPass === true && errorMessage.validConfirm === true){
         axios
             .post(
-                "http://localhost:4000/user/signup",
+                "https://acts-api-production.up.railway.app/user/signup",
                 {
                     userName: formState.username,
                     email: formState.email,

@@ -11,7 +11,7 @@ export const UserProvider = ({ children }) => {
 
 	const getUserInfo = () => {
 		axios
-			.get("http://localhost:4000/user/serialize", {
+			.get("https://acts-api-production.up.railway.app/user/serialize", {
 				withCredentials: true,
 			})
 			.then((response) => {
@@ -28,7 +28,7 @@ export const UserProvider = ({ children }) => {
 
 	const logout = () => {
 		axios
-			.post("http://localhost:4000/user/logout", {}, { withCredentials: true })
+			.post("https://acts-api-production.up.railway.app/user/logout", {}, { withCredentials: true })
 			.then((response) => {
 				console.log(response.data);
 				if (response.data.message === "successfully logged out")
