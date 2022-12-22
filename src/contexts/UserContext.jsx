@@ -1,6 +1,7 @@
 import { createContext, useState, useEffect } from "react";
 import {useNavigate} from "react-router-dom";
 import axios from "axios";
+axios.defaults.withCredentials = true;
 
 const UserContext = createContext();
 
@@ -10,8 +11,8 @@ export const UserProvider = ({ children }) => {
 
 	const getUserInfo = () => {
 		axios
-			.get("https://acts-api-production.up.railway.app/user/serialize", {
-				withCredentials: false,
+			.get("http://localhost:4000/user/serialize", {
+				withCredentials: true,
 			})
 			.then((response) => {
 				setTheUser(response.data);
@@ -27,7 +28,7 @@ export const UserProvider = ({ children }) => {
 
 	const logout = () => {
 		axios
-			.post("https://acts-api-production.up.railway.app/user/logout", {}, { withCredentials: false })
+			.post("http://localhost:4000/user/logout", {}, { withCredentials: true })
 			.then((response) => {
 				console.log(response.data);
 				if (response.data.message === "successfully logged out")

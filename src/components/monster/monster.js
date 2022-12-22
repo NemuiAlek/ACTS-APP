@@ -23,7 +23,8 @@ const getMonstersStandard = () =>{
     console.log(showAmt)
     axios
     .get("https://api.open5e.com/monsters/?limit="+showAmt+'&search='+search, {
-    })
+        withCredentials: false
+    },)
     .then((response) => {
         setMonsters(response.data.results);
     })
@@ -34,7 +35,7 @@ const getMonstersStandard = () =>{
 
 const getMonstersCustom = () =>{
     axios
-    .get("https://acts-api-production.up.railway.app/monster/", {
+    .get("http://localhost:4000/monster/", {
     })
     .then((response) => {
         setMonsters(response.data);

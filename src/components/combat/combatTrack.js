@@ -9,7 +9,7 @@ import React from 'react'
 
 export default function CombatTracker(){
 
-const { theUser} = useContext(UserContext);  
+const { theUser, getUserInfo} = useContext(UserContext);  
 const navigate = useNavigate();
 const params = useParams();
 const myRef = React.useRef(null)
@@ -112,6 +112,7 @@ const getMonstersStandard = () =>{
     if (dictionary !== 'standard') return
     axios
     .get("https://api.open5e.com/monsters/?limit=10", {
+        withCredentials: false
     })
     .then((response) => {
         setMonsters(response.data.results);
@@ -125,7 +126,7 @@ const getMonstersStandard = () =>{
 const getMonstersCustom = () =>{
     if (dictionary !== 'custom') return
     axios
-    .get("https://acts-api-production.up.railway.app/monster/", {
+    .get("http://localhost:4000/monster/", {
     })
     .then((response) => {
         setMonsters(response.data);
@@ -176,7 +177,7 @@ const addMonster = (event,action) => {
     // fix this later plz
 
     axios
-    .post("https://acts-api-production.up.railway.app/combat/detail/add/"+params.id,
+    .post("http://localhost:4000/combat/detail/add/"+params.id,
     {
         action:action,
         monsterID:combatDetail.monsterid,
@@ -210,6 +211,7 @@ const addMonster = (event,action) => {
 const getMonDetStan = () =>{
     axios
     .get("https://api.open5e.com/monsters/"+combatDetail.monsterid, {
+        withCredentials: false
     })
     .then((response) => {
         setMonster(() => response.data);
@@ -221,7 +223,7 @@ const getMonDetStan = () =>{
 
 const getMonDetCus = () =>{
     axios
-    .get("https://acts-api-production.up.railway.app/monster/"+combatDetail.monsterid, {
+    .get("http://localhost:4000/monster/"+combatDetail.monsterid, {
     })
     .then((response) => {
         setMonster(response.data);
@@ -233,7 +235,7 @@ const getMonDetCus = () =>{
 
 const getCombatData = () =>{
     axios
-    .get("https://acts-api-production.up.railway.app/combat/detail/" + params.id, {
+    .get("http://localhost:4000/combat/detail/" + params.id, {
     })
     .then((response) => {
         setCombatMonsters(() => response.data)
@@ -248,7 +250,7 @@ const healthChanges = (event,id,healthMod,action) =>{
     event.preventDefault()
     
     axios
-    .post("https://acts-api-production.up.railway.app/combat/detail/health", {
+    .post("http://localhost:4000/combat/detail/health", {
             id: id,
             modifier: healthMod,
             action: action
@@ -268,7 +270,7 @@ const deleteDetail = (event,id) =>{
     event.preventDefault()
     
     axios
-    .post("https://acts-api-production.up.railway.app/combat/detail/delete/"+id, {
+    .post("http://localhost:4000/combat/detail/delete/"+id, {
     })
     .then((response) => {
         getCombatData();
@@ -284,12 +286,12 @@ const deleteCombat = (event,id) =>{
     event.preventDefault()
     
     axios
-    .post("https://acts-api-production.up.railway.app/combat/delete/"+id, {
+    .post("http://localhost:4000/combat/delete/"+id, {
         user:theUser.id
     })
     .then((response) => {
         navigate('/combat');
-        window.location.reload();
+        // window.location.reload();
     })
     .catch((err) => {
         console.log(err);
@@ -361,6 +363,7 @@ useEffect(()=>{
 },[monster.hit_points])
 
 useEffect(() => {
+    getUserInfo()
     getCombatData()
 },[])
 /*
