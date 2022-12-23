@@ -1,214 +1,222 @@
-import { useEffect, useState} from "react";
-import {useNavigate} from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 axios.defaults.withCredentials = true;
 
-export default function SignUp(){
-
-    const navigate = useNavigate();
-/*
+export default function SignUp() {
+  const navigate = useNavigate();
+  /*
 ======================== STATES ======================
 */
-	const [formState, setFormState] = useState({
-		username: "",
-        email: "",
-		password: "",
-        confirmPassword: "",
-	});
+  const [formState, setFormState] = useState({
+    username: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+  });
 
-    const [errorMessage, validate] = useState({
-        validUsername:false,
-        validEmail:false,
-        validPass:false,
-        validConfirm: false,
-    })
-/*
+  const [errorMessage, validate] = useState({
+    validUsername: false,
+    validEmail: false,
+    validPass: false,
+    validConfirm: false,
+  });
+  /*
 ======================== FUNCTIONS ======================
 */
 
-const validation = (type,str) => {
+  const validation = (type, str) => {
+    let req;
 
-    let req
-
-if (type === 'Pass'){
-    req = /^(?=.*[a-z])(?=.*[A-Z]).{6,30}$/;
-} else if (type === 'Email'){
-    req = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
-}
-
-    if(str.match(req)){
-        return true
-    } else {
-        return false
-    }    
-
-}
-
-const validateConfirm = () =>{
-    if(formState.password === '' || formState.confirmPassword === ''){
-        validate((x) => ({...x, validConfirm: false}))
-    }else if(formState.confirmPassword !== formState.password){
-        validate((x) => ({...x, validConfirm: 'Passwords dont match!'}))
-    }else if (formState.confirmPassword === formState.password){
-        validate((x) => ({...x, validConfirm: true}))
+    if (type === "Pass") {
+      req = /^(?=.*[a-z])(?=.*[A-Z]).{6,30}$/;
+    } else if (type === "Email") {
+      req = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
     }
-}
 
-const updateInput = (e, thingToUpdate) => {
+    if (str.match(req)) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+
+  const validateConfirm = () => {
+    if (formState.password === "" || formState.confirmPassword === "") {
+      validate((x) => ({ ...x, validConfirm: false }));
+    } else if (formState.confirmPassword !== formState.password) {
+      validate((x) => ({ ...x, validConfirm: "Passwords dont match!" }));
+    } else if (formState.confirmPassword === formState.password) {
+      validate((x) => ({ ...x, validConfirm: true }));
+    }
+  };
+
+  const updateInput = (e, thingToUpdate) => {
     setFormState({ ...formState, [thingToUpdate]: e.target.value });
-};
+  };
 
-const submitSignupForm = (event) => {
-
+  const submitSignupForm = (event) => {
     event.preventDefault();
 
     axios
-    .post(
+      .post(
         "https://acts-api-production.up.railway.app/user/validate",
         {
-            userName: formState.username,
-            email: formState.email,
-        },{withCredentials: true}
-    )
-    .then((msg) => {
-    
-        if (formState.username === ''){
-            validate((x) => ({...x, validUsername: 'Username cannot be blank'}))
-        }else if(msg.data === 'Username already in use.'){
-                validate((x) => ({...x, validUsername: msg.data}))
-        }else {
-            validate((x) => ({...x, validUsername: true}))
-        }
-    
-        if (formState.email === ''){
-            validate((x) => ({...x, validEmail: 'Email cannot be blank'}))
-        }else if(msg.data === 'Email already in use.'){
-            validate((x) => ({...x, validEmail: msg.data}))
-        }else if(!validation('Email', formState.email)){
-            validate((x) => ({...x, validEmail: 'Invalid Email'}))
+          userName: formState.username,
+          email: formState.email,
+        },
+        { withCredentials: true }
+      )
+      .then((msg) => {
+        if (formState.username === "") {
+          validate((x) => ({
+            ...x,
+            validUsername: "Username cannot be blank",
+          }));
+        } else if (msg.data === "Username already in use.") {
+          validate((x) => ({ ...x, validUsername: msg.data }));
         } else {
-            validate((x) => ({...x, validEmail: true }))
+          validate((x) => ({ ...x, validUsername: true }));
         }
-    
-        if ( formState.password === ''){
-            validate((x) => ({...x, validPass: 'Password cannot be blank'}))
-        }
-        else if(!validation('Pass', formState.password)){
-            validate((x) => ({...x, validPass: 'Password must be between 6-30 charcters and contain one upper case, one lower case and a number'}))
+
+        if (formState.email === "") {
+          validate((x) => ({ ...x, validEmail: "Email cannot be blank" }));
+        } else if (msg.data === "Email already in use.") {
+          validate((x) => ({ ...x, validEmail: msg.data }));
+        } else if (!validation("Email", formState.email)) {
+          validate((x) => ({ ...x, validEmail: "Invalid Email" }));
         } else {
-            validate((x) => ({...x, validPass: true }))
+          validate((x) => ({ ...x, validEmail: true }));
         }
-    
-        validateConfirm()
-        
-    })
-    .catch((err) => {
+
+        if (formState.password === "") {
+          validate((x) => ({ ...x, validPass: "Password cannot be blank" }));
+        } else if (!validation("Pass", formState.password)) {
+          validate((x) => ({
+            ...x,
+            validPass:
+              "Password must be between 6-30 charcters and contain one upper case, one lower case and a number",
+          }));
+        } else {
+          validate((x) => ({ ...x, validPass: true }));
+        }
+
+        validateConfirm();
+      })
+      .catch((err) => {
         console.log(err);
-    });
+      });
+  };
 
-
-};
-
-/*
+  /*
 ======================== USE EFFECTS ======================
 */
 
-useEffect(()=>{    
+  useEffect(() => {
+    validateConfirm();
+  }, [formState.confirmPassword, formState.password]);
 
-validateConfirm()
+  useEffect(() => {
+    if (
+      errorMessage.validUsername === true &&
+      errorMessage.validEmail === true &&
+      errorMessage.validPass === true &&
+      errorMessage.validConfirm === true
+    ) {
+      axios
+        .post(
+          "https://acts-api-production.up.railway.app/user/signup",
+          {
+            userName: formState.username,
+            email: formState.email,
+            password: formState.password,
+            confirmPassword: formState.confirmPassword,
+            role: "admin",
+          },
+          { withCredentials: true }
+        )
+        .then((response) => {
+          console.log(response); //getUserInfo();
+          navigate("/login");
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  }, [errorMessage]);
 
-},[formState.confirmPassword, formState.password])
-
-useEffect(()=>{
-    if(errorMessage.validUsername === true && errorMessage.validEmail === true && errorMessage.validPass === true && errorMessage.validConfirm === true){
-        axios
-            .post(
-                "https://acts-api-production.up.railway.app/user/signup",
-                {
-                    userName: formState.username,
-                    email: formState.email,
-                    password: formState.password,
-                    confirmPassword: formState.confirmPassword,
-                    role: 'admin'
-                },
-                { withCredentials: true }
-            )
-            .then((response) => {
-                console.log(response)//getUserInfo();
-                navigate("/login")
-            })
-            .catch((err) => {
-                console.log(err);
-            });
-        }
-},[errorMessage])
-
-/*
+  /*
 ======================== HTML(JSX) ======================
 */
-    return (
-        <div id="profilePage">
-            <div className="homePage profilePage">
-    
+  return (
+    <div id="profilePage">
+      <div className="homePage profilePage">
         <h1>Sign Up</h1>
 
         <div className="username">
-            <form>
-
-                <br />
-                {errorMessage.validUsername !== false && (
-                    <p>{errorMessage.validUsername}</p>
-                )}
-                <label>UserName</label>
-                <input id="usernameInput"
-                type="text"
-                value={formState.username}
-                onChange={(e) => {
+          <form>
+            <br />
+            {errorMessage.validUsername !== false && (
+              <p>{errorMessage.validUsername}</p>
+            )}
+            <label>UserName</label>
+            <input
+              id="usernameInput"
+              type="text"
+              value={formState.username}
+              onChange={(e) => {
                 updateInput(e, "username");
-                }}></input>
+              }}
+            ></input>
 
-                <br />
-                {errorMessage.validEmail !== false && (
-                    <p>{errorMessage.validEmail}</p>
-                )}
-                <label>Email</label>
-                <input id="emailInput"
-                type="text"
-                value={formState.email}
-                onChange={(e) => {
+            <br />
+            {errorMessage.validEmail !== false && (
+              <p>{errorMessage.validEmail}</p>
+            )}
+            <label>Email</label>
+            <input
+              id="emailInput"
+              type="text"
+              value={formState.email}
+              onChange={(e) => {
                 updateInput(e, "email");
-                }}></input>
+              }}
+            ></input>
 
-                <br />
-                {errorMessage.validPass !== false && (
-                    <p>{errorMessage.validPass}</p>
-                )}
-                <label>Password</label>
-                <input 
-                type="password" id="passwordInput"
-                value={formState.password}
-                onChange={(e) => {
+            <br />
+            {errorMessage.validPass !== false && (
+              <p>{errorMessage.validPass}</p>
+            )}
+            <label>Password</label>
+            <input
+              type="password"
+              id="passwordInput"
+              value={formState.password}
+              onChange={(e) => {
                 updateInput(e, "password");
-                }}></input>
+              }}
+            ></input>
 
-                <br />
-                {errorMessage.validConfirm !== false && (
-                    <p>{errorMessage.validConfirm}</p>
-                )}
-                <label>Confirm Password</label>
-                <input id="confirmPasswordInput"
-                type="password"
-                value={formState.confirmPassword}
-                onChange={(e) => {
+            <br />
+            {errorMessage.validConfirm !== false && (
+              <p>{errorMessage.validConfirm}</p>
+            )}
+            <label>Confirm Password</label>
+            <input
+              id="confirmPasswordInput"
+              type="password"
+              value={formState.confirmPassword}
+              onChange={(e) => {
                 updateInput(e, "confirmPassword");
-                }}></input>
+              }}
+            ></input>
 
-                <br/>
-                
-                <button onClick={submitSignupForm}>Submit</button>
-            </form>
+            <br />
+
+            <button onClick={submitSignupForm}>Submit</button>
+          </form>
         </div>
+      </div>
     </div>
-</div>
-    )
-    }
+  );
+}
