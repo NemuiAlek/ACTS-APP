@@ -1,54 +1,59 @@
 import { createContext, useState, useEffect } from "react";
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 axios.defaults.withCredentials = true;
 
 const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
-	const navigate = useNavigate();
-	const [theUser, setTheUser] = useState({});
+  const navigate = useNavigate();
+  const [theUser, setTheUser] = useState({});
 
-	const getUserInfo = () => {
-		axios
-			.get("https://acts-api-production.up.railway.app/user/serialize", {
-				withCredentials: true,
-			})
-			.then((response) => {
-				setTheUser(response.data);
-			})
-			.catch((err) => {
-				console.log(err);
-			});
-	};
+  const storeToken = (token) => {
+    localStorage.setItem('authToken',token)
 
-	useEffect(() => {
-		getUserInfo();
-	}, []);
+    console.log(localStorage)
+  }
 
-	const logout = () => {
-		axios
-			.post("https://acts-api-production.up.railway.app/user/logout", {}, { withCredentials: true })
-			.then((response) => {
-				console.log(response.data);
-				if (response.data.message === "successfully logged out")
-					setTheUser(null);
-					navigate("/");
-					window.location.reload();
-			})
-			.catch((err) => {
-				console.log(err);
-			});
-	};
+  const getUserInfo = () => {
+    const storedToken = localStorage.authToken
+    axios
+      .get("https://acts-api-production.up.railway.app/user/serialize", {
+        headers: {Authorization: `Bearer ${storedToken}`}
+      },{withCredentials: true})
+      .then((response) => {
+        setTheUser(response.data);
+      })
+      .catch((err) => {
+        setTheUser({});
+        console.log(err);
+      });
+      
+  };
 
-	return (
-		// which states/functions we want as global variables. you have to pass the value in order for it to be available.
-		<UserContext.Provider
-			value={{ theUser, setTheUser, logout, getUserInfo }}
-		>
-			{children}
-		</UserContext.Provider>
-	);
+  useEffect(() => {
+    getUserInfo();
+  }, []);
+
+  const removeToken = () => {                    // <== ADD
+    // Upon logout, remove the token from the localStorage
+    localStorage.removeItem("authToken");
+  }
+
+  const logout = () => {
+
+    removeToken();
+
+    getUserInfo();
+
+  };
+
+  return (
+    // which states/functions we want as global variables. you have to pass the value in order for it to be available.
+    <UserContext.Provider value={{ theUser, setTheUser, logout, getUserInfo, storeToken }}>
+      {children}
+    </UserContext.Provider>
+  );
 };
 
 export default UserContext;
