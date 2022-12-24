@@ -12,7 +12,7 @@ export const UserProvider = ({ children }) => {
   const storeToken = (token) => {
     localStorage.setItem('authToken',token)
 
-    console.log(localStorage)
+    //console.log(localStorage)
   }
 
   const getUserInfo = () => {

@@ -104,6 +104,14 @@ export default function MonsterStandard() {
   const submitBtn = (event) => {
     event.preventDefault();
 
+    getUserInfo();
+
+    if (!theUser){
+      alert('ERROR INVALID LOGIN RETURNING TO LOG IN PAGE')
+      navigate("/login")
+      return
+    }
+
     // fix this later plz
     monster.name = monster.name.replace(/'/g, "''");
     monster.type = monster.type.replace(/'/g, "''");
@@ -142,7 +150,13 @@ export default function MonsterStandard() {
   };
 
   const deleteMonster = () => {
-    console.log(theUser.id);
+    getUserInfo();
+
+    if (!theUser){
+      alert('ERROR INVALID LOGIN RETURNING TO LOG IN PAGE')
+      navigate("/login")
+      return
+    }
 
     axios
       .post("https://acts-api-production.up.railway.app/monster/delete/" + params.id, {
@@ -179,6 +193,15 @@ export default function MonsterStandard() {
 
   const submitArray = (event, array) => {
     event.preventDefault();
+
+    getUserInfo();
+
+    if (!theUser){
+      alert('ERROR INVALID LOGIN RETURNING TO LOG IN PAGE')
+      navigate("/login")
+      return
+    }
+
     axios
       .post(
         "https://acts-api-production.up.railway.app/monster/create-update-array/" +
@@ -203,6 +226,15 @@ export default function MonsterStandard() {
 
   const deleteArray = (event, array) => {
     event.preventDefault();
+
+    getUserInfo();
+
+    if (!theUser){
+      alert('ERROR INVALID LOGIN RETURNING TO LOG IN PAGE')
+      navigate("/login")
+      return
+    }
+
     axios
       .post(
         "https://acts-api-production.up.railway.app/monster/delete-array/" +
