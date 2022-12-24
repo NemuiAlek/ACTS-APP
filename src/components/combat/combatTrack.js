@@ -111,7 +111,7 @@ export default function CombatTracker() {
   const getMonstersStandard = () => {
     if (dictionary !== "standard") return;
     axios
-      .get("https://api.open5e.com/monsters/?limit=10", {
+      .get("https://api.open5e.com/monsters/?limit=10000", {
         withCredentials: false,
       })
       .then((response) => {
