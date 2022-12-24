@@ -32,17 +32,19 @@ export default function CombatTracker() {
   ]);
 
   const [updateMode, setUpdateMode] = useState(false);
-  // const [waitToLoad, activateLoad] = useState(false)
+  const [waitToLoad, activateLoad] = useState(false)
 
-  // setTimeout(() => {
-  //     activateLoad(true)
-  // }, 1000);
+  setTimeout(() => {
+      activateLoad(true)
+  }, 500);
 
   /*
 ======================== FUNCTIONS ======================
 */
   const createBtn = (event, action) => {
     event.preventDefault();
+
+    getUserInfo();
 
     // fix this later plz
     combat.name = combat.name.replace(/'/g, "''");
@@ -98,6 +100,11 @@ export default function CombatTracker() {
     getUserInfo();
     getSavedCombats();
   }, []);
+
+  useEffect(() => {
+    getUserInfo();
+    getSavedCombats();
+  }, [waitToLoad]);
 
   /*
 ======================== HTML(JSX) ======================

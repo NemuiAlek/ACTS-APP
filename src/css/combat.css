@@ -75,7 +75,7 @@ min-height: 150px ;
     flex-grow: row;
     margin-top: 0px;
     padding-bottom: 15px;
-    height: 3vw;
+    height: auto;
     }
 
     #createCombat #combatInfo #topInfo h5{

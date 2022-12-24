@@ -190,8 +190,6 @@ export default function CombatTracker() {
 
     event.preventDefault();
 
-    // fix this later plz
-
     axios
       .post("https://acts-api-production.up.railway.app/combat/detail/add/" + params.id, {
         action: action,
@@ -293,9 +291,11 @@ export default function CombatTracker() {
   const deleteCombat = (event, id) => {
     event.preventDefault();
 
+    getUserInfo();
+
     axios
       .post("https://acts-api-production.up.railway.app/combat/delete/" + id, {
-        user: theUser.id,
+        user: theUser.id ? theUser.id : '0',
       })
       .then((response) => {
         navigate("/combat");
