@@ -1300,6 +1300,13 @@ export default function MonsterStandard() {
                     </div>
                   )}
 
+                  {monster.damage_resistances.length !== 0 && (
+                    <div className="property-line">
+                      <h4>Damange Resistances </h4>
+                      <p>{monster.damage_resistances}</p>
+                    </div>
+                  )}
+
                   {monster.damage_immunities.length !== 0 && (
                     <div className="property-line">
                       <h4>Damage Immunities </h4>
