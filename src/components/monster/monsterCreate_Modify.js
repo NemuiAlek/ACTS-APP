@@ -140,7 +140,7 @@ export default function MonsterStandard() {
         if (params.id === "new") {
           navigate("/monster/create-modify/" + response.data.id);
         } else {
-          window.location.reload();
+          navigate("/monster/detail/" + params.id)
         }
       })
       .catch((err) => {
@@ -166,7 +166,7 @@ export default function MonsterStandard() {
       .then((response) => {
         console.log(response);
         navigate("/monster/custom");
-        window.location.reload();
+        //window.location.reload();
       })
       .catch((err) => {
         console.log(err);
